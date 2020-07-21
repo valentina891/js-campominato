@@ -2,8 +2,10 @@
 // I numeri non possono essere duplicati
 
 var casuali = [];
+var massimo = 100;
 
-while (casuali.lenght < 16) {
+// ciclo per generare numeri casuali ed inserirlo nell'array senza doppioni
+while (casuali.length < 16) {
     var numero = generaRandom(1,100);
     if (trovaElemento(casuali,numero) == false) {
         casuali.push(numero);
@@ -16,15 +18,41 @@ console.log(casuali);
 // L’utente non può inserire più volte lo stesso numero.
 // Se il numero è presente nella lista dei numeri generati, la partita termina,
 // altrimenti si continua chiedendo all'utente un altro numero.
+
+var voltePossibili = 4 ; //DA MODIFICARE: inserisci massimo-16//
+var numeri = [];
+var numUtente;
+var trovato = false;
+
+while (numeri.length < voltePossibili && trovato == false) {
+    // inserimento numero utente possibile
+    var numUtente = parseInt(prompt("Inserisci un numero da 1 a " + massimo));
+    // controllo inserimento utente (tra 0 e 100)
+    while (numUtente <= 0 || numUtente > massimo) {
+        numUtente = parseInt(prompt("Attenzione, devi inserire un numero da 1 a " + massimo));
+    }
+    // controllo per verifica che il numero utente non sia nell'array casuale e che non sia un doppio
+    if (trovaElemento(casuali,numUtente)) {
+        trovato = true;
+    }
+    else if (trovaElemento(numeri,numUtente) == false) {
+        numeri.push(numUtente);
+    } else {
+        alert ("Attenzione, numero già presente. Ripetere l'inserimento");
+    }
+}
+
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero
 // massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio,
 // cioè il numero di volte che l’utente ha inserito un numero consentito.
-// BONUS: (da fare solo se funziona tutto il resto)
-// all'inizio il software richiede anche una difficoltà all'utente che cambia il range di numeri casuali:
-// con difficoltà 0 => tra 1 e 100
-// con difficoltà 1 =>  tra 1 e 80
-// con difficoltà 2 => tra 1 e 50
+
+if (trovato) {
+    alert("Hai perso, con punteggio " + numeri.length);
+} else {
+    alert("Hai vinto!");
+}
+
 
 
 // ****mie Funzioni****//
@@ -34,7 +62,7 @@ function generaRandom(min,max) {
 
 function trovaElemento(array,elemento) {
     var i = 0;
-    while (i < array.lenght) {
+    while (i < array.length) {
         if (elemento == array[i]) {
             return true;
         }
