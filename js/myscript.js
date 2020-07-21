@@ -52,6 +52,7 @@ if (trovato) {
 } else {
     alert("Hai vinto!");
 }
+console.log(numeri);
 
 
 
