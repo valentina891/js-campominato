@@ -19,7 +19,7 @@ console.log(casuali);
 // Se il numero è presente nella lista dei numeri generati, la partita termina,
 // altrimenti si continua chiedendo all'utente un altro numero.
 
-var voltePossibili = 4 ; //DA MODIFICARE: inserisci massimo-16//
+var voltePossibili = massimo - 16;
 var numeri = [];
 var numUtente;
 var trovato = false;
